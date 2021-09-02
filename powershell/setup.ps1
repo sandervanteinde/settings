@@ -5,3 +5,5 @@ Install-Module posh-cli -Scope CurrentUser
 # modules are available, installs them, and adds
 # Import-Module commands to your $PROFILE file.
 Install-TabCompletion
+
+Add-Content $PROFILE "`nSet-PSReadlineKeyHandler -Key Tab -Function MenuComplete `nSet-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward `nSet-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward"
