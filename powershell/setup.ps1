@@ -1,9 +1,9 @@
-# Install the meta-module in the scope of the current user.
-Install-Module posh-cli -Scope CurrentUser
+winget install JanDeDobbeleer.OhMyPosh -s winget
 
-# This looks for locally installed CLIs for which tab-completion
-# modules are available, installs them, and adds
-# Import-Module commands to your $PROFILE file.
-Install-TabCompletion
+## Restart to refresh PATH
 
-Add-Content $PROFILE "`nSet-PSReadlineKeyHandler -Key Tab -Function MenuComplete `nSet-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward `nSet-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward"
+mkdir C:\oh-my-posh
+
+curl -o C:\oh-my-posh\style.json https://www.keycdn.com/img/example.jpg
+
+Add-Content $PROFILE "oh-my-posh init pwsh --config 'C:\oh-my-posh\style.json' | Invoke-Expression"
