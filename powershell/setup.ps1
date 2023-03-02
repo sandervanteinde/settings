@@ -4,6 +4,6 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 
 mkdir C:\oh-my-posh
 
-curl -o C:\oh-my-posh\style.json https://www.keycdn.com/img/example.jpg
+curl -o C:\oh-my-posh\style.json https://raw.githubusercontent.com/sandervanteinde/settings/main/powershell/style.json
 
 Add-Content $PROFILE "oh-my-posh init pwsh --config 'C:\oh-my-posh\style.json' | Invoke-Expression"
