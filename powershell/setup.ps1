@@ -4,6 +4,8 @@ winget install JanDeDobbeleer.OhMyPosh -s winget
 
 # Restart to refresh PATH then run the next part.
 
+oh-my-posh font install Meslo
+
 mkdir C:\oh-my-posh
 
 curl -o C:\oh-my-posh\style.json https://raw.githubusercontent.com/sandervanteinde/settings/main/powershell/style.json
