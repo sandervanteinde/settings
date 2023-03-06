@@ -14,3 +14,7 @@ Add-Content $PROFILE "`noh-my-posh init pwsh --config 'C:\oh-my-posh\style.json'
 
 Install-Module -Name Terminal-Icons -Repository PSGallery
 Add-Content $PROFILE "`nImport-Module -Name Terminal-Icons"
+
+
+# Add unix like tab completion
+Add-Content $PROFILE "`nSet-PSReadlineKeyHandler -Key Tab -Function MenuComplete"
