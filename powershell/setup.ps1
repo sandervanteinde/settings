@@ -10,6 +10,8 @@ mkdir C:\oh-my-posh
 
 curl -o C:\oh-my-posh\style.json https://raw.githubusercontent.com/sandervanteinde/settings/main/powershell/style.json
 
+Add-Content $PROFILE "`nif(!`$env:WT_SESSION) {`n  return`n}"
+
 Add-Content $PROFILE "`noh-my-posh init pwsh --config 'C:\oh-my-posh\style.json' | Invoke-Expression"
 
 Install-Module -Name Terminal-Icons -Repository PSGallery
