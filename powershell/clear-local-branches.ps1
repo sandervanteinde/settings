@@ -22,7 +22,7 @@ $localBranches | ForEach-Object {
         Write-Host "Branch to delete: $localBranch. Are you sure? (Y/N)"
         $response = Read-Host
         if ($response -eq "Y") {
-            git branch -d $localBranch
+            git branch -D $localBranch
         } else {
             Write-Host "Skipping deletion of $localBranch"
         }
