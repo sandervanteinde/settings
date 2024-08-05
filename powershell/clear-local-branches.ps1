@@ -3,9 +3,10 @@ $currentBranch = git branch --show-current
 $localBranches = git branch | ForEach-Object { $_.Trim() -replace '^\* ', '' }
 $remoteBranches = git branch -r | ForEach-Object { $_.Trim() -replace '^origin/', '' }
 
+$branchesToDelete = @()
+
 $localBranches | ForEach-Object {
-    $localBranch = $_
-    
+$localBranch = $_
     $matchFound = $false
     $remoteBranches | ForEach-Object {
         $remoteBranch = $_
@@ -13,18 +14,23 @@ $localBranches | ForEach-Object {
             $matchFound = $true
         }
     }
-
-    if (-not $matchFound) {
-        if($localBranch -eq $currentBranch) {
-            Write-Host "Skipping deletion of the currently checked out branch $localBranch. It is active branch"
-            continue
-        }
-        Write-Host "Branch to delete: $localBranch. Are you sure? (Y/N)"
-        $response = Read-Host
-        if ($response -eq "Y") {
-            git branch -D $localBranch
-        } else {
-            Write-Host "Skipping deletion of $localBranch"
-        }
+    if (-not $matchFound -and $localBranch -ne $currentBranch) {
+        $branchesToDelete += $localBranch
     }
+}
+
+if ($branchesToDelete.Length -gt 0) {
+    Write-Host "Branches to delete:"
+    $branchesToDelete | ForEach-Object { Write-Host $_ }
+    Write-Host "Are you sure? (Y/N)"
+    $response = Read-Host   
+    if ($response -eq "Y") {
+        $branchesToDelete | ForEach-Object {
+            git branch -D $_
+        }
+    } else {
+        Write-Host "Skipping deletion of the listed branches"
+    }
+} else {
+    Write-Host "No branches to delete found."
 }
