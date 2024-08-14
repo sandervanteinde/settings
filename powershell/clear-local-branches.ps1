@@ -1,3 +1,13 @@
+param (
+    [Parameter(Mandatory=$false, Position=0)]
+    [string]$Path
+)
+
+if ($PSBoundParameters.ContainsKey('Path')) {
+    Set-Location -Path $Path
+}
+
+
 git fetch
 $currentBranch = git branch --show-current
 $localBranches = git branch | ForEach-Object { $_.Trim() -replace '^\* ', '' }
